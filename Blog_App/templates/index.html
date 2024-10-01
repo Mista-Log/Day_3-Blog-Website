@@ -1,0 +1,368 @@
+
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<main class="main">
+
+  <!-- Slider Section -->
+  <section id="slider" class="slider section dark-background">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="swiper init-swiper">
+
+        <script type="application/json" class="swiper-config">
+          {
+            "loop": true,
+            "speed": 600,
+            "autoplay": {
+              "delay": 5000
+            },
+            "slidesPerView": "auto",
+            "centeredSlides": true,
+            "pagination": {
+              "el": ".swiper-pagination",
+              "type": "bullets",
+              "clickable": true
+            },
+            "navigation": {
+              "nextEl": ".swiper-button-next",
+              "prevEl": ".swiper-button-prev"
+            }
+          }
+        </script>
+
+        <div class="swiper-wrapper">
+          {% for post in posts %}
+          <div class="swiper-slide" style="background-image: url('{{ post.image.url }}');">
+            <div class="content">
+              <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+              <p>{{post.body|truncatewords:20}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+
+  </section><!-- /Slider Section -->
+
+  <!-- Trending Category Section -->
+  <section id="trending-category" class="trending-category section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+          <div class="col-lg-4">
+
+            <div class="post-entry lg">
+              <a href="/single-post/{{post.id}}"><img src="{{ post.image.url }}" alt="{{ post.tittle }}" class="img-fluid"></a>
+              <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+              <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+              <p class="mb-4 d-block">{{post.body|truncatewords:50}}</p>
+
+              <div class="d-flex align-items-center author">
+                <div class="photo"><img src="{{ post.image.url }}" alt="" class="img-fluid"></div>
+                <div class="name">
+                  <h3 class="m-0 p-0">{{post.reff}}</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row g-5">
+              <div class="col-lg-4 border-start custom-border">
+                {% for post in tri_business %}
+                <div class="post-entry">
+                  <a href="/single-post/{{post.id}}"><img src="{{ post.image.url }}" alt="{{ post.tittle }}" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+                  <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-4 border-start custom-border">
+                {% for post in tri_lifestyle %}
+                <div class="post-entry">
+                  <a href="/single-post/{{post.id}}"><img src="{{ post.image.url }}" alt="{{ post.tittle }}" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+                  <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+                </div>
+                {% endfor %}
+              </div>
+
+              <!-- Trending Section -->
+              <div class="col-lg-4">
+
+                <div class="trending">
+                  <h3>Trending</h3>
+                  <ul class="trending-post">
+                    {% for post in trending %}
+                    <li>
+                      <a href="/single-post/{{post.id}}">
+                        <span class="number"></span>
+                        <h3>{{post.tittle}}</h3>
+                        <span class="author">{{post.reff}}</span>
+                      </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+              </div> <!-- End Trending Section -->
+            </div>
+          </div>
+
+        </div> <!-- End .row -->
+      </div>
+
+    </div>
+
+  </section><!-- /Trending Category Section -->
+
+  <!-- Culture Category Section -->
+  <section id="culture-category" class="culture-category section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <div class="section-title-container d-flex align-items-center justify-content-between">
+        <h2>Culture</h2>
+      </div>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <div class="d-lg-flex post-entry">
+            <a href="/single-post/{{post.id}}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+              <img src="{{ post.image.url }}" alt="{{ post.tittle }}" class="img-fluid">
+            </a>
+            <div>
+              <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+              <h3><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h3>
+              <p>{{post.body|truncatewords:75}}</p>
+              <div class="d-flex align-items-center author">
+                <div class="photo"><img src="{{ post.image.url }}" alt="{{ post.tittle }}" class="img-fluid"></div>
+                <div class="name">
+                  <h3 class="m-0 p-0">{{post.reff}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="post-list border-bottom">
+                <a href="/single-post/{{post1.id}}"><img src="{{ post1.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post1.group}}</span> <span class="mx-1">•</span> <span>{{post1.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post1.id}}">{{post1.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post1.reff}}</span>
+                <p class="mb-4 d-block">{{post1.body|truncatewords:50}}</p>
+              </div>
+
+              <div class="post-list">
+                <div class="post-meta"><span class="date">{{post2.group}}</span> <span class="mx-1">•</span> <span>{{post2.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post2.id}}">{{post2.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post2.reff}}</span>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="post-list">
+                <a href="/single-post/{{post3.id}}"><img src="{{ post3.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post3.group}}</span> <span class="mx-1">•</span> <span>{{post3.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post3.id}}">{{post3.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post3.reff}}</span>
+                <p class="mb-4 d-block">{{post3.body|truncatewords:50}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          {% for post in culture %}
+          <div class="post-list border-bottom">
+            <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+            <h2 class="mb-2"><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+            <span class="author mb-3 d-block">{{post.reff}}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+  </section><!-- /Culture Category Section -->
+
+  <!-- Business Category Section -->
+  <section id="business-category" class="business-category section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <div class="section-title-container d-flex align-items-center justify-content-between">
+        <h2>Business</h2>
+      </div>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row">
+        <div class="col-md-9 order-md-2">
+
+          <div class="d-lg-flex post-entry">
+            <a href="/single-post/{{post3.id}}" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+              <img src="{{ post3.image.url }}" alt="" class="img-fluid">
+            </a>
+            <div>
+              <div class="post-meta"><span class="date">{{post4.group}}</span> <span class="mx-1">•</span> <span>{{post4.date}}</span></div>
+              <h3><a href="/single-post/{{post4.id}}">{{post4.tittle}}</a></h3>
+              <p>{{post4.body|truncatewords:50}}</p>
+              <div class="d-flex align-items-center author">
+                <div class="photo"><img src="{{ post4.image.url }}" alt="" class="img-fluid"></div>
+                <div class="name">
+                  <h3 class="m-0 p-0">{{post4.reff}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="post-list border-bottom">
+                <a href="/single-post/{{post5.id}}"><img src="{{ post5.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post5.group}}</span> <span class="mx-1">•</span> <span>{{post5.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post5.id}}">{{post5.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post5.reff}}</span>
+                <p class="mb-4 d-block">{{post5.body|truncatewords:50}}</p>
+              </div>
+
+              <div class="post-list">
+                <div class="post-meta"><span class="date">{{post6.group}}</span> <span class="mx-1">•</span> <span>{{post6.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post6.id}}">{{post6.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post6.reff}}</span>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="post-list">
+                <a href="/single-post/{{post7.id}}"><img src="{{ post7.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post7.group}}</span> <span class="mx-1">•</span> <span>{{post7.date}}</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post.id}}">{{post7.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post7.reff}}</span>
+                <p class="mb-4 d-block">{{post7.body|truncatewords:50}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          {% for post in business %}
+          <div class="post-list border-bottom">
+            <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+            <h2 class="mb-2"><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+            <span class="author mb-3 d-block">{{post.reff}}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+  </section><!-- /Business Category Section -->
+
+  <!-- Lifestyle Category Section -->
+  <section id="lifestyle-category" class="lifestyle-category section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <div class="section-title-container d-flex align-items-center justify-content-between">
+        <h2>Lifestyle</h2>
+      </div>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="post-list lg">
+            <a href="/single-post/{{post8.id}}"><img src="{{ post8.image.url }}" alt="" class="img-fluid"></a>
+            <div class="post-meta"><span class="date">{{post8.group}}</span> <span class="mx-1">•</span> <span>{{post8.date}}</span></div>
+            <h2><a href="/single-post/{{post.id}}">{{post8.tittle}}</a></h2>
+            <p class="mb-4 d-block">{{post8.body|truncatewords:50}}</p>
+
+            <div class="d-flex align-items-center author">
+              <div class="photo"><img src="{{ post8.image.url }}" alt="" class="img-fluid"></div>
+              <div class="name">
+                <h3 class="m-0 p-0">{{post8.reff}}</h3>
+              </div>
+            </div>
+          </div>
+
+          {% comment %} <div class="post-list border-bottom">
+            <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
+            <h2 class="mb-2"><a href="/single-post/{{post.id}}">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
+            <span class="author mb-3 d-block">Jenny Wilson</span>
+          </div> {% endcomment %}
+          {% for post in tri_lifestyle %}
+          <div class="post-list">
+            <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+            <h2 class="mb-2"><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+            <span class="author mb-3 d-block">{{post.reff}}</span>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row g-5">
+            <div class="col-lg-4 border-start custom-border">
+              {% for post in tri_lifestyle2 %}
+              <div class="post-list">
+                <a href="/single-post/{{post.id}}"><img src="{{ post.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+                <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="col-lg-4 border-start custom-border">
+              {% for post in tri_lifestyle %}
+              <div class="post-list">
+                <a href="blog-details.html"><img src="{{ post.image.url }}" alt="" class="img-fluid"></a>
+                <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>{{post.date}}</span></div>
+                <h2><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="col-lg-4">
+              {% for post in lifestyle %}
+              <div class="post-list border-bottom">
+                <div class="post-meta"><span class="date">{{post.group}}</span> <span class="mx-1">•</span> <span>Jul 5th '22</span></div>
+                <h2 class="mb-2"><a href="/single-post/{{post.id}}">{{post.tittle}}</a></h2>
+                <span class="author mb-3 d-block">{{post.reff}}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Lifestyle Category Section -->
+
+</main>
+
+{% endblock %}
+
+
+
+
